@@ -7,16 +7,16 @@ namespace RacuniApp
 {
     class Params
     {
-        public static string PUTANJA_ZA_SKINUTO = @"C:\Users\Ivan\Desktop\Racuni\Skinuto";
-        public static string PUTANJA_ZA_REZULTAT = @"C:\Users\Ivan\Desktop\Racuni\Rezultat";
+        public static string PUTANJA_ZA_SKINUTO = @"C:\Users\IvanHP\Desktop\Racuni\Skinuto";
+        public static string PUTANJA_ZA_REZULTAT = @"C:\Users\IvanHP\Desktop\Racuni\Rezultat";
         public static string FILE_PREFIX = "racuni_";
-        public static string TEMPLATE_PATH = @"C:\Users\Ivan\Desktop\Racuni\racuni_template.xlsx";
+        public static string TEMPLATE_PATH = @"C:\Users\IvanHP\Desktop\Racuni\racuni_template.xlsx";
 
         public static string DB_CONNECTION_STRING = "Persist Security Info=False" +
             ";User ID=" + "sa" +
-            ";Password=" + "0S4m0S4m" +
+            ";Password=" + "osamosam" +
             ";Initial Catalog=" + "Monitoring" +
-            ";Server=" + "Monitoring-PC";
+            ";Server=" + "Lapitopi";
 
         public static string SERVER_IP = "188.241.117.241";
         public static int SERVER_PORT = 8888;
@@ -28,5 +28,9 @@ namespace RacuniApp
         public static string FILE_EXTENSION = ".csv";
 
         public static int TIME_TO_WAIT_FOR_SERVER_STATUS = 1; // minutes
+
+        public static List<string> MAIL_ADRESE_ZA_SLANJE = new List<string>(new string[] { "i.mentov@cube.rs"});
+        public static string MAIL_ZA_SLANJE = "no-reply@cube.rs";
+        public static string MAIL_PASSWORD = "cubenoreply123.";
     }
 }

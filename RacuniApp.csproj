@@ -72,10 +72,10 @@
     <Compile Include="CSV\RacunIzBaze.cs" />
     <Compile Include="CSV\RacunIzCSV.cs" />
     <Compile Include="DBCommunication\DBBasicFunctions.cs" />
-    <Compile Include="DBCommunication\SadistaCommunication\SadistaFunctions.cs" />
-    <Compile Include="DBCommunication\SadistaCommunication\SadistaImplementation.cs" />
+    <Compile Include="DBCommunication\MonitoringIzBaze.cs" />
+    <Compile Include="SadistaCommunication\SadistaFunctions.cs" />
+    <Compile Include="SadistaCommunication\SadistaImplementation.cs" />
     <Compile Include="ExcelCommunication.cs" />
-    <Compile Include="NadgledanaFirma.cs" />
     <Compile Include="Params.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
