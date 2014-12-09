@@ -29,7 +29,6 @@ namespace RacuniApp
 
         public static int TIME_TO_WAIT_FOR_SERVER_STATUS = 1; // minutes
 
-        public static List<string> MAIL_ADRESE_ZA_SLANJE = new List<string>(new string[] { "i.mentov@cube.rs"});
         public static string MAIL_ZA_SLANJE = "no-reply@cube.rs";
         public static string MAIL_PASSWORD = "cubenoreply123.";
     }

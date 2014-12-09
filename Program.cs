@@ -16,9 +16,9 @@ namespace RacuniApp
         {
             if (DBBasicFunctions.checkDatabaseStatus())
             {
-                 SadistaImplementation.doYourThing();
+                /* SadistaImplementation.doYourThing();
                  UcitavanjeGenerisanje.uploadSource(Params.PUTANJA_ZA_SKINUTO + "\\" + Params.FILE_PREFIX + DateTime.Now.ToString(Params.FILE_NAME_FORMAT) + Params.FILE_EXTENSION);
-                 UcitavanjeGenerisanje.generisiRezultat();
+                 UcitavanjeGenerisanje.generisiRezultat();*/
 
                 // citanje svih monitoringa racuna
 

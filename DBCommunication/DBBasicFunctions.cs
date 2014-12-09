@@ -284,6 +284,27 @@ namespace RacuniApp.DBCommunication
             }
         }
 
+        public static List<int> getMonitoringIDPoVrsti(int idVrstaMonitoringa)
+        {
+            string query;
+            SqlCommand command;
+            SqlDataReader reader;
+            List<int> monitoringID = new List<int>();
+
+            query = "SELECT IDMonitoring FROM Monitoring WHERE IDVrstaMonitoringa = @idVrstaMonitoringa";
+
+            command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@idVrstaMonitoringa", idVrstaMonitoringa);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+                monitoringID.Add(Int32.Parse([0].ToString().Trim()));
+            reader.Close();
+            command.Dispose();
+            return monitoringID;
+ 
+        }
+
 
 
 
