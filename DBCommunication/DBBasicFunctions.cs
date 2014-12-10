@@ -185,7 +185,7 @@ namespace RacuniApp.DBCommunication
             // zatvoreni racuni
             query = "INSERT INTO RezultatRacuna (IDNadgledanaFirma,NazivBanke,BrojRacuna,StatusRacuna) SELECT R_N_1.IDNadgledanaFirma, R_N_1.NazivBanke, R_N_1.BrojRacuna, 'Zatvoren račun'  FROM Racun R_N_1 " +
             "LEFT JOIN Racun R_N ON R_N_1.BrojRacuna = R_N.BrojRacuna and R_N.DanRacuna = 'N' JOIN OsnovneInformacije oi on oi.IDNadgledanaFirma = R_N_1.IDNadgledanaFirma  WHERE R_N_1.DanRacuna = 'N_1' " +
-            " and oi.Status_N not like '%risan%'" +
+            " and (oi.Status_N not like '%risan%' OR oi.Status_N = '-') " +
             " AND (R_N_1.StatusRacunaSC like '%Uklju_en u platni promet%' OR R_N_1.StatusRacunaSC like '%Blokirana zadu%enja%' OR R_N_1.StatusRacunaSC like '%Blokiran po osnovu prinudne naplate%')  AND R_N.IDRacun IS NULL";
             command = new SqlCommand(query, connection);
             command.ExecuteNonQuery();
@@ -203,7 +203,7 @@ namespace RacuniApp.DBCommunication
 
             query = "  SELECT nf.MaticniBroj, oi.CarlCustomID, oi.naziv, oi.pib, rr.NazivBanke,  rr.BrojRacuna, rr.StatusRacuna, rr.StatusRacunaSC  FROM RezultatRacuna rr " +
             "INNER JOIN NadgledanaFirma nf ON nf.IDNadgledanaFirma = rr.IDNadgledanaFirma  INNER JOIN OsnovneInformacije oi ON oi.IDNadgledanaFirma = rr.IDNadgledanaFirma INNER JOIN MonitoringFirma mf on mf.IDNadgledanaFirma = nf.IDNadgledanaFirma " +
-            "WHERE mf.IDMonitoring = @IDMonitoring";
+            "WHERE mf.IDMonitoring = @IDMonitoring ORDER BY rr.StatusRacuna";
             command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@IDMonitoring", IDMonitoring);
 
