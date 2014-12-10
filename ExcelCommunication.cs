@@ -11,7 +11,7 @@ namespace RacuniApp
 {
     class ExcelCommunication
     {
-        public static void upisiUFajl(ArrayList rib)
+        public static string upisiUFajl(ArrayList rib, String fileName, String clientName)
         {
             SLDocument sl;
             sl = new SLDocument(Params.TEMPLATE_PATH);
@@ -20,10 +20,9 @@ namespace RacuniApp
             Console.WriteLine(DateTime.Now + ": Pocinje upisivanje u fajl");
 
             sl.RenameWorksheet(SLDocument.DefaultFirstSheetName, "Bankovni računi");
-            sl.SetCellValue("G2", "Test");
+            sl.SetCellValue("G2", clientName);
             sl.SetCellValue("G3", DateTime.Now.ToString("dd. MMMM yyyy", CultureInfo.GetCultureInfo("sr-Latn-CS")));
-
-
+            
             foreach (RacunIzBaze onerib in rib)
             {
                 sl.SetCellValue(i, 1, onerib.maticniBroj);
@@ -38,9 +37,10 @@ namespace RacuniApp
                 i++;
             }
 
-            sl.SaveAs(Params.PUTANJA_ZA_REZULTAT + "\\test_racuna_" + DateTime.Now.ToString("yyyyMMdd") + ".xlsx");
+            string filePath = Params.PUTANJA_ZA_REZULTAT + "\\Racuni - " + fileName + " - " + DateTime.Now.ToString("yyyyMMdd") + ".xlsx";
+            sl.SaveAs(filePath);
             Console.WriteLine(DateTime.Now + ": Zavrseno upisivanje u fajl");
-
+            return filePath;
         }
     }
 }

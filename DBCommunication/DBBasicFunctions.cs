@@ -1,3 +1,4 @@
+﻿
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +51,6 @@ namespace RacuniApp.DBCommunication
                 insertIntoOsnovneInformacije(rcsv, idNadgledanaFirma);
 
             insertIntoRacuni(rcsv, idNadgledanaFirma, "N");
-
         }
 
         public static string proveraMBuNadgledanaFirma(String maticniBrojZaProveru)
@@ -170,7 +170,6 @@ namespace RacuniApp.DBCommunication
             string query;
             SqlCommand command;
 
-
             // brisanje prethodnih racuna
             query = "TRUNCATE TABLE RezultatRacuna";
             command = new SqlCommand(query, connection);
@@ -195,7 +194,7 @@ namespace RacuniApp.DBCommunication
 
         }
 
-        public static ArrayList getRezultat()
+        public static ArrayList getRezultat(int IDMonitoring)
         {
             string query;
             SqlCommand command;
@@ -203,8 +202,10 @@ namespace RacuniApp.DBCommunication
             ArrayList rib = new ArrayList();
 
             query = "  SELECT nf.MaticniBroj, oi.CarlCustomID, oi.naziv, oi.pib, rr.NazivBanke,  rr.BrojRacuna, rr.StatusRacuna, rr.StatusRacunaSC  FROM RezultatRacuna rr " +
-            "INNER JOIN NadgledanaFirma nf ON nf.IDNadgledanaFirma = rr.IDNadgledanaFirma  INNER JOIN OsnovneInformacije oi ON oi.IDNadgledanaFirma = rr.IDNadgledanaFirma";
+            "INNER JOIN NadgledanaFirma nf ON nf.IDNadgledanaFirma = rr.IDNadgledanaFirma  INNER JOIN OsnovneInformacije oi ON oi.IDNadgledanaFirma = rr.IDNadgledanaFirma INNER JOIN MonitoringFirma mf on mf.IDNadgledanaFirma = nf.IDNadgledanaFirma " +
+            "WHERE mf.IDMonitoring = @IDMonitoring";
             command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@IDMonitoring", IDMonitoring);
 
             reader = command.ExecuteReader();
             while (reader.Read())
@@ -213,11 +214,6 @@ namespace RacuniApp.DBCommunication
             command.Dispose();
             return rib;
         }
-
-
-
-
-
 
 
         public static Boolean checkDatabaseStatus()
@@ -298,21 +294,52 @@ namespace RacuniApp.DBCommunication
             command.Parameters.AddWithValue("@idVrstaMonitoringa", idVrstaMonitoringa);
             reader = command.ExecuteReader();
             while (reader.Read())
-                monitoringID.Add(Int32.Parse([0].ToString().Trim()));
+                monitoringID.Add(Int32.Parse(reader[0].ToString().Trim()));
             reader.Close();
             command.Dispose();
-            return monitoringID;
- 
+            return monitoringID; 
         }
 
+        public static string getNazivPoIDMonitoring(int IDMonitoring)
+        {
+            string query;
+            SqlCommand command;
+            SqlDataReader reader;
+            string naziv = "";
 
+            query = "SELECT Naziv FROM Monitoring WHERE IDMonitoring = @IDMonitoring";
 
+            command = new SqlCommand(query, connection);
 
+            command.Parameters.AddWithValue("@IDMonitoring", IDMonitoring);
+            reader = command.ExecuteReader();
+            if (reader.Read())
+                naziv = reader[0].ToString().Trim();
+            reader.Close();
+            command.Dispose();
+            return naziv; 
+        }
 
+        public static List<string> getMailPoIDMonitoring(int IDMonitoring)
+        {
+            string query;
+            SqlCommand command;
+            SqlDataReader reader;
+            List<string> mail = new List<string>();
 
+            query = "SELECT Mail FROM Mail where IDMonitoring = @IDMonitoring";
 
+            command = new SqlCommand(query, connection);
 
+            command.Parameters.AddWithValue("@IDMonitoring", IDMonitoring);
+            reader = command.ExecuteReader();
+            while (reader.Read())
+                mail.Add(reader[0].ToString().Trim());
+            reader.Close();
+            command.Dispose();
+            return mail;
+        }
 
-
+       
     }
 }

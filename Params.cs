@@ -15,7 +15,7 @@ namespace RacuniApp
         public static string DB_CONNECTION_STRING = "Persist Security Info=False" +
             ";User ID=" + "sa" +
             ";Password=" + "osamosam" +
-            ";Initial Catalog=" + "Monitoring" +
+            ";Initial Catalog=" + "Monitoring1" +
             ";Server=" + "Lapitopi";
 
         public static string SERVER_IP = "188.241.117.241";
@@ -30,6 +30,8 @@ namespace RacuniApp
         public static int TIME_TO_WAIT_FOR_SERVER_STATUS = 1; // minutes
 
         public static string MAIL_ZA_SLANJE = "no-reply@cube.rs";
-        public static string MAIL_PASSWORD = "cubenoreply123.";
+        public static string MAIL_PASSWORD = "XBEKxhhGfMly";
+        public static string MAIL_SMTP_SERVER = "mail.cube.rs";
+        public static string MAIL_READ_RECEPIENT = "no-reply@cube.rs";
     }
 }

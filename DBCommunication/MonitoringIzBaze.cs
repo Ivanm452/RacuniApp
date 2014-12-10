@@ -8,22 +8,15 @@ namespace RacuniApp.DBCommunication
 {
     class MonitoringIzBaze
     {
+        public int idMonitoring;
         public string naziv;
         public List<string> mailoviZaSlanje;
-        public List<string> idNadgledaneFirme;
 
         public MonitoringIzBaze()
         {
+            idMonitoring = -666;
             this.naziv = "";
             this.mailoviZaSlanje = new List<string>();
-            this.idNadgledaneFirme = new List<string>();
-        }
-
-        public MonitoringIzBaze(string naziv, List<string> mailoviZaSlanje, List<string> idNadgledaneFirme)
-        {
-            this.naziv = naziv;
-            this.mailoviZaSlanje = mailoviZaSlanje;
-            this.idNadgledaneFirme = idNadgledaneFirme;
         }
     }
 }

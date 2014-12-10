@@ -16,25 +16,24 @@ namespace RacuniApp
         {
             if (DBBasicFunctions.checkDatabaseStatus())
             {
-                /* SadistaImplementation.doYourThing();
-                 UcitavanjeGenerisanje.uploadSource(Params.PUTANJA_ZA_SKINUTO + "\\" + Params.FILE_PREFIX + DateTime.Now.ToString(Params.FILE_NAME_FORMAT) + Params.FILE_EXTENSION);
-                 UcitavanjeGenerisanje.generisiRezultat();*/
+                ArrayList rib;
 
-                // citanje svih monitoringa racuna
+                SadistaImplementation.doYourThing();
 
-                // hvatanje rezultata za svaki
+                UcitavanjeGenerisanje.uploadSource(Params.PUTANJA_ZA_SKINUTO + "\\" + Params.FILE_PREFIX + DateTime.Now.ToString(Params.FILE_NAME_FORMAT) + Params.FILE_EXTENSION);
+                UcitavanjeGenerisanje.generisiRezultat();
 
-                // generisanje fajla za svaki
+                List<MonitoringIzBaze> monitoringIzBaze = UcitavanjeGenerisanje.getMonitoringIzBaze();
 
-                // slanje maila za svaki 
-
-
-
-
-                 ArrayList rib = UcitavanjeGenerisanje.getRezultat();
-                 ExcelCommunication.upisiUFajl(rib);
-            }
-            
+                foreach (MonitoringIzBaze mib in monitoringIzBaze)
+                {
+                    rib = UcitavanjeGenerisanje.getRezultat(mib.idMonitoring);
+                    UcitavanjeGenerisanje.email_send(mib.naziv, 
+                        ExcelCommunication.upisiUFajl(rib, mib.naziv,mib.naziv), 
+                        mib.mailoviZaSlanje); 
+                }
+            }     
+       
             Console.ReadKey();
         }
     }

@@ -30,8 +30,7 @@ namespace RacuniApp.CSV
 
         public override string ToString()
         {
-            return maticniBroj + " " + carlCustomID + " " + naziv + " " + PIB + " " + banka + " " + brojRacuna + " " + statusRacuna;
-
+            return maticniBroj + " " + carlCustomID + " " + naziv + " " + PIB + " " + banka + " " + brojRacuna + " " + statusRacuna;            
         }
 
     }
