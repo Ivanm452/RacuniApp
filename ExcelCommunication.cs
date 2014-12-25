@@ -37,7 +37,7 @@ namespace RacuniApp
                 i++;
             }
 
-            string filePath = Params.PUTANJA_ZA_REZULTAT + "\\Racuni - " + fileName + " - " + DateTime.Now.ToString("yyyyMMdd") + ".xlsx";
+            string filePath = Params.PUTANJA_ZA_REZULTAT + "\\Qbing računi - " + fileName + " - " + DateTime.Now.ToString("yyyyMMdd") + ".xlsx";
             sl.SaveAs(filePath);
             Console.WriteLine(DateTime.Now + ": Zavrseno upisivanje u fajl");
             return filePath;

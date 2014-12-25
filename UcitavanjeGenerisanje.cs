@@ -126,7 +126,7 @@ namespace RacuniApp
                 mail.Headers.Add("Read-Receipt-To", Params.MAIL_READ_RECEPIENT);
                 mail.Headers.Add("Disposition-Notification-To", Params.MAIL_READ_RECEPIENT);
 
-                LinkedResource theEmailImage = new LinkedResource("../../Resources/logo.png");
+                LinkedResource theEmailImage = new LinkedResource(Params.MAIL_LOGO_PATH);
                 theEmailImage.ContentId = "myImageID";
 
                 string body =
